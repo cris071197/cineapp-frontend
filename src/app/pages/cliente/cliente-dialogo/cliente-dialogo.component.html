@@ -1,0 +1,95 @@
+<form [formGroup]="form" (ngSubmit)="operar()" #frmCliente="ngForm">
+  <mat-tab-group>
+
+    <mat-tab label="Datos Personales">
+      <div class="container">
+        <mat-form-field>
+          <input matInput placeholder="Nombres" formControlName="nombres">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Apellidos" formControlName="apellidos">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="DNI" formControlName="dni">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput readonly [matDatepicker]="picker" placeholder="Fecha Nacimiento" [max]="maxFecha"
+            formControlName="fechaNac">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-button color="primary"
+          onclick="event.preventDefault();document.getElementById('flArchivo').click()">Seleccionar
+          archivo</button>
+        <input id="flArchivo" type="file" (change)="selectFile($event)" style="display:none;">
+
+        <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%" />
+        <p>{{labelFile}}</p>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Datos del Usuario">
+      <div class="container">
+        <mat-form-field>
+          <input matInput [readonly]="nuevo" placeholder="Nombre de Usuario" formControlName="usuario">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" name="password" placeholder="Contraseña" formControlName="password" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Repetir contraseña" formControlName="confirmPassword" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="frmCliente.invalid">Registrar</button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</form>
+<!--
+<div>Datos Personales</div>
+  <mat-form-field>
+    <input matInput placeholder="Nombre" [(ngModel)]="cliente.nombres">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Apellido" [(ngModel)]="cliente.apellidos">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="DNI" [(ngModel)]="cliente.dni">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Escoge una fecha" [(ngModel)]="cliente.fechaNac">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-button color="primary" onclick="document.getElementById('flArchivo').click()">Seleccionar archivo</button>
+  <input id="flArchivo" type="file" (change)="selectFile($event)"  style="display:none;" >
+
+  <img mat-card-image [src]="imagenData" *ngIf="imagenEstado" width="50%" height="50%"/>
+  <p>{{labelFile}}</p>
+
+  <div>Datos de Usuario</div>
+  <mat-form-field>
+    <input matInput placeholder="Nombre de Usuario" [(ngModel)]="usuario.nombre">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" name="password" placeholder="Contraseña" [(ngModel)]="usuario.clave" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" id="clave" placeholder="Repetir contraseña" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="operar()">Aceptar</button>
+  <button mat-raised-button color="accent" (click)="cancelar()">Cancelar</button>
+  -->
